@@ -13,7 +13,6 @@ const Cocktail = () => {
   useEffect(() => {
     setSearchTerm(id);
     setSearchType('ID');
-    console.log('cocktails', cocktails[0]);
     setSingleCocktail(cocktails[0] || []);
   }, [cocktails])
 

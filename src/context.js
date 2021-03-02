@@ -28,7 +28,6 @@ const AppProvider = ({ children }) => {
   
   const fetchDrinks = useCallback( async () => {
     setLoading(true);
-    console.log('fetching drinks');
     try {
       const drinks = await getDrinks();
       if (drinks) {
@@ -48,10 +47,8 @@ const AppProvider = ({ children }) => {
   }, [searchType])
 
   const getDrinks = async () => {
-    console.log('searchtype', searchType);
     let url = urls.find(url => url.type === searchType).url;
     const response = await fetch(`${url}${searchTerm}`);
-    console.log(`${url}${searchTerm}`);
     const data = await response.json();
     const { drinks } = data;
     return drinks || [];
@@ -59,7 +56,7 @@ const AppProvider = ({ children }) => {
 
   const getRandomCocktails = async (drinks) => {
     const newCockTails = [].concat(extractCocktails(drinks));
-    while (newCockTails.length < 4) {
+    while (newCockTails.length < 9) {
       const drink = await getDrinks();
       const extractedDrink = extractCocktails(drink);
       newCockTails.push(extractedDrink[0]);
