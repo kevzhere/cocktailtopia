@@ -1,8 +1,15 @@
-import React from 'react'
-import { CocktaillList } from './CocktaillList';
-import Loading from './Loading';
+import React, { useEffect } from 'react'
+import { CocktaillList } from '../components/CocktaillList';
+import { useGlobalContext } from '../context';
 
 const Home = () => {
+  const { setSearchType, setSearchTerm } = useGlobalContext();
+
+  useEffect(() => {
+    setSearchTerm('');
+    setSearchType('RANDOM');
+  })
+
   return (
     <>
       <div className='container'>

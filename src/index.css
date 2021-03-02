@@ -27,6 +27,14 @@ h4 {
   letter-spacing: 0.1rem;
 }
 
+h5 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -37,6 +45,19 @@ a {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.column {
+  height: 80vh;
+  width: 50vh;
+  margin: 5px 10px;
+}
+
+.column img {
+  height: 80%;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 15px;
 }
 
 .container {

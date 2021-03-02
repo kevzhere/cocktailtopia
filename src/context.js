@@ -23,50 +23,48 @@ const urls = [
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchType, setSearchType] = useState('RANDOM');
+  const [searchType, setSearchType] = useState('');
   const [cocktails, setCocktails] = useState([]);
   
   const fetchDrinks = useCallback( async () => {
     setLoading(true);
+    console.log('fetching drinks');
     try {
       const drinks = await getDrinks();
       if (drinks) {
-        console.log('drinks');
         if (searchType === 'RANDOM') {
-          console.log('random');
           const newCocktails = await getRandomCocktails(drinks);
           setCocktails(newCocktails);
         } else {
           setCocktails(extractCocktails(drinks));
         }
       } else {
-        console.log('else');
         setCocktails([]);
       }
       setLoading(false)
     } catch(e) {
-      console.log(e);
       setLoading(false);
     }
   }, [searchType])
 
   const getDrinks = async () => {
+    console.log('searchtype', searchType);
     let url = urls.find(url => url.type === searchType).url;
     const response = await fetch(`${url}${searchTerm}`);
+    console.log(`${url}${searchTerm}`);
     const data = await response.json();
-    console.log('data', data);
     const { drinks } = data;
     return drinks || [];
   }
 
   const getRandomCocktails = async (drinks) => {
     const newCockTails = [].concat(extractCocktails(drinks));
-    while (newCockTails.length < 2) {
+    while (newCockTails.length < 4) {
       const drink = await getDrinks();
       const extractedDrink = extractCocktails(drink);
       newCockTails.push(extractedDrink[0]);
     }
-    console.log('new cocktails', newCockTails);
+
     return newCockTails;
   }
 
@@ -109,7 +107,8 @@ const AppProvider = ({ children }) => {
         setSearchTerm,
         searchType,
         setSearchType,
-        cocktails
+        cocktails, 
+        fetchDrinks,
       }}
     >
       { children }
