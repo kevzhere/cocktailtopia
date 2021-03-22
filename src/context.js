@@ -29,6 +29,11 @@ const AppProvider = ({ children }) => {
   const fetchDrinks = useCallback( async () => {
     setLoading(true);
     try {
+      if (searchType !== 'RANDOM' && !searchTerm) {
+        setLoading(false);
+        setCocktails([]);
+        return;
+      }
       const drinks = await getDrinks();
       if (drinks) {
         if (searchType === 'RANDOM') {
@@ -44,7 +49,7 @@ const AppProvider = ({ children }) => {
     } catch(e) {
       setLoading(false);
     }
-  }, [searchType])
+  }, [searchType, searchTerm])
 
   const getDrinks = async () => {
     let url = urls.find(url => url.type === searchType).url;

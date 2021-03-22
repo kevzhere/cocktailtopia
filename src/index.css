@@ -1,5 +1,6 @@
 :root {
   --primaryColor: #76f872;
+  --secondaryColor: rgb(51, 141, 224);
 }
 
 body {
@@ -45,6 +46,14 @@ a {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .column {
@@ -245,9 +254,23 @@ a {
 .btn,
 .btn-primary {
   text-transform: uppercase;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.1rem;
   color: var(--primaryColor);
   border: 2px solid var(--primaryColor);
+  padding: 0.45rem 0.8rem;
+  display: inline-block;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  font-size: 0.8rem;
+  background: transparent;
+  border-radius: 0.25rem;
+  display: inline-block;
+}
+.btn-secondary {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: var(--secondaryColor);
+  border: 2px solid var(--secondaryColor);
   padding: 0.45rem 0.8rem;
   display: inline-block;
   transition: all 0.3s linear;
@@ -271,4 +294,28 @@ a {
 .btn-primary:hover {
   background: whitesmoke;
   color: var(--primaryColor);
+}
+.btn-secondary {
+  background: var(--secondaryColor);
+  color: whitesmoke;
+}
+
+.btn-secondary:hover {
+  background: whitesmoke;
+  color: var(--secondaryColor);
+}
+
+.select-bar {
+  height: 10vh;
+}
+
+.text-input {
+  border: 1px solid rgb(207, 205, 205);
+  min-height: 32px;
+}
+
+.text-input:focus {
+  outline: none !important;
+  border: 1px solid rgb(145, 243, 250);
+  box-shadow: 0 0 10px #719ece;
 }

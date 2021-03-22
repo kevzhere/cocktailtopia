@@ -5,16 +5,19 @@ import Loading from './Loading';
 
 export const CocktaillList = () => {
   const { cocktails, loading } = useGlobalContext();
+  const renderCocktails = () => {
+    if (cocktails.length < 1) {
+      return <p>NO COCKTAILS FOUND</p>;
+    }
+    return cocktails.map((cocktail) => 
+      <CocktailCard key={cocktail.id} cocktail={cocktail}/>
+    );
+  }
   return (
     <div className='container'>
-      <h2>Random Cocktails</h2>
       <div className='card-center'>
-        {
-          loading ? <Loading/> : cocktails.map((cocktail) => {
-          return <CocktailCard key={cocktail.id} cocktail={cocktail}/>
-        })}
+        { loading ? <Loading/> : renderCocktails() }
       </div>
-      
     </div>
   )
 }
